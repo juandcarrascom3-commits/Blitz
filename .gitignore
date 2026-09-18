@@ -1,0 +1,6 @@
+
+venv/
+nexus-backend/venv/
+node_modules/
+*.db
+.env
