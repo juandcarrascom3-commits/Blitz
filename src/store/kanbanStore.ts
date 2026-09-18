@@ -47,31 +47,32 @@ interface KanbanState {
 
 const initialTasks: Task[] = [
   {
-    id: '1',
+    id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11',
     title: 'Diseñar arquitectura de red isométrica',
     status: 'todo',
     priority: 'critical',
     deadline: '24 Oct',
     subtasks: [
-      { id: 's1', title: 'Definir nodos principales', completed: true },
-      { id: 's2', title: 'Crear shaders de pulso', completed: false }
+      { id: 'b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22', title: 'Definir nodos principales', completed: true },
+      { id: 'c0eebc99-9c0b-4ef8-bb6d-6bb9bd380a33', title: 'Crear shaders de pulso', completed: false }
     ],
     hasNotes: true,
+    notes: 'Documentación inicial del terreno low-poly.'
   },
   {
-    id: '2',
+    id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a44',
     title: 'Implementar caché local con Zustand persist',
     status: 'in-progress',
     priority: 'medium',
     subtasks: [
-      { id: 's3', title: 'Configurar middleware', completed: true },
-      { id: 's4', title: 'Filtrar tabs en UI', completed: true },
-      { id: 's5', title: 'Hydration wrapper', completed: false }
+      { id: 'b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a55', title: 'Configurar middleware', completed: true },
+      { id: 'c0eebc99-9c0b-4ef8-bb6d-6bb9bd380a66', title: 'Filtrar tabs en UI', completed: true },
+      { id: 'd0eebc99-9c0b-4ef8-bb6d-6bb9bd380a77', title: 'Hydration wrapper', completed: false }
     ],
     hasNotes: false,
   },
   {
-    id: '3',
+    id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a88',
     title: 'Refinar paleta Cyber-Glass extrema',
     status: 'review',
     priority: 'low',
@@ -80,13 +81,13 @@ const initialTasks: Task[] = [
     hasNotes: true,
   },
   {
-    id: '4',
+    id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a99',
     title: 'Configurar variables de entorno y DND',
     status: 'done',
     priority: 'critical',
     subtasks: [
-      { id: 's6', title: 'Instalar @dnd-kit/core', completed: true },
-      { id: 's7', title: 'Configurar context', completed: true }
+      { id: 'b0eebc99-9c0b-4ef8-bb6d-6bb9bd380aaa', title: 'Instalar @dnd-kit/core', completed: true },
+      { id: 'c0eebc99-9c0b-4ef8-bb6d-6bb9bd380abb', title: 'Configurar context', completed: true }
     ],
     hasNotes: false,
   }

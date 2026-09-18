@@ -1,4 +1,4 @@
-﻿import enum
+import enum
 import uuid
 from typing import List, Optional
 from datetime import datetime, timezone
@@ -15,27 +15,28 @@ class PriorityEnum(str, enum.Enum):
     medium = "medium"
     low = "low"
 
-class Subtask(SQLModel, table=True):
-    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+class SubtaskBase(SQLModel):
     title: str
-    isCompleted: bool = Field(default=False)
-    task_id: uuid.UUID = Field(foreign_key="task.id")
-    task: "Task" = Relationship(back_populates="subtasks")
+    completed: bool = Field(default=False)
 
-class Note(SQLModel, table=True):
+class Subtask(SubtaskBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    content_markdown: str = Field(default="")
-    last_updated: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    task_id: uuid.UUID = Field(foreign_key="task.id", unique=True)
-    task: "Task" = Relationship(back_populates="note")
+    task_id: uuid.UUID = Field(foreign_key="task.id", ondelete="CASCADE")
+    task: Optional["Task"] = Relationship(back_populates="subtasks")
 
-class Task(SQLModel, table=True):
-    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+class TaskBase(SQLModel):
     title: str
     description: Optional[str] = Field(default=None)
     status: StatusEnum = Field(default=StatusEnum.todo)
     priority: PriorityEnum = Field(default=PriorityEnum.low)
     deadline: Optional[str] = Field(default=None)
     hasNotes: bool = Field(default=False)
-    subtasks: List[Subtask] = Relationship(back_populates="task")
-    note: Optional[Note] = Relationship(back_populates="task")
+    notes: Optional[str] = Field(default="")
+
+class Task(TaskBase, table=True):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+    subtasks: List[Subtask] = Relationship(back_populates="task", cascade_delete=True)
+
+class TaskRead(TaskBase):
+    id: uuid.UUID
+    subtasks: List[SubtaskBase] = []
